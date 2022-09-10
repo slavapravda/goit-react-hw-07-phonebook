@@ -1,10 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchContacts, addContact, removeContact } from './itemsOperations';
 
-import {
-  pendingCallback,
-  rejectedCallback,
-} from 'shared/helpers/helpers';
+import { pendingCallback, rejectedCallback } from 'shared/helpers/helpers';
 
 const initialState = {
   items: [],

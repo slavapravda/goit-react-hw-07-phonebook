@@ -18,4 +18,3 @@ export const removeContact = async id => {
   const { data } = await instance.delete(`/${id}`);
   return data;
 };
-
