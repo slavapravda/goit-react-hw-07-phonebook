@@ -1,18 +1,26 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { useDispatch } from 'react-redux';
-import { addContact } from 'redux/contacts/items/itemsActions';
+
+import {
+  fetchContacts,
+  addContact,
+} from 'redux/contacts/items/itemsOperations';
 
 import s from './form.module.css';
 
 const Form = () => {
   const [state, setState] = useState({
     name: '',
-    number: '',
+    phone: '',
   });
 
-  const { name, number } = state;
+  const { name, phone } = state;
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
@@ -30,7 +38,7 @@ const Form = () => {
 
     setState({
       name: '',
-      number: '',
+      phone: '',
     });
   };
 
@@ -54,9 +62,9 @@ const Form = () => {
           <label className={s.form__label}>Number</label>
           <input
             placeholder="+380...."
-            value={number}
+            value={phone}
             type="tel"
-            name="number"
+            name="phone"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
